@@ -1,0 +1,18 @@
+[[package]]
+name = "tabulate"
+version = "0.9.0"
+description = "Pretty-print tabular data"
+category = "main"
+optional = false
+python-versions = ">=3.7"
+
+[package.extras]
+widechars = ["wcwidth"]
+
+[metadata]
+lock-version = "1.1"
+python-versions = "^3.10"
+content-hash = "0f4636e176645f4ea594b21893a5d27f08f9588ab48f3f1421483403a0c3c478"
+
+[metadata.files]
+tabulate = []

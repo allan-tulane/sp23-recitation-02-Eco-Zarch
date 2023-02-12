@@ -1,7 +1,7 @@
 # CMPS 2200  Recitation 02
 
-**Name (Team Member 1):**_________________________  
-**Name (Team Member 2):**_________________________
+**Name (Team Member 1):**__Zachary__Wiel__ 
+**Name (Team Member 2):**__Shira__Rozenthal__
 
 In this recitation, we will investigate recurrences. 
 To complete this recitation, follow the instructions in this document. Some of your answers will go in this file, and others will require you to edit `main.py`.
@@ -48,12 +48,82 @@ where $W(1) = 1$.
 
 - [ ] 4. (2 point) Now, derive the asymptotic behavior of $W(n)$ using $f(n) = 1$, $f(n) = \log n$ and $f(n) = n$. Then, generate actual values for $W(n)$ for your code and confirm that the trends match your derivations.
 
-**TODO: your answer goes here**
+W(n) = O(nlog_b a) - Master Theorem
+Using Master Theorem to derive the asymptotic behavior of W(n) for the following:
+
+f(n) = 1:
+  a = b > 1
+  W(n) = O(n)
+
+  evidence:
+|     n |   n   |
+|-------|-------|
+|    10 |    31 |
+|    20 |    63 |
+|    50 |   127 |
+|   100 |   255 |
+|  1000 |  2047 |
+|  5000 | 16383 |
+| 10000 | 32767 |
+  
+f(n) = log n:
+  a > b > 1
+  
+  W(n) = O(nlogn)
+
+  evidence:
+|     n |   nlog n |
+|-------|----------|
+|    10 |    3.452 |
+|    20 |    9.899 |
+|    50 |   51.826 |
+|   100 |  108.258 |
+|  1000 | 1362.700 |
+|  5000 | 3257.509 |
+| 10000 | 6524.228 |
+
+  
+f(n) = n:
+  a > b > 1
+  W(n) = O(n^2)
+
+  evidence:
+
+|     n |     n^2    |
+|-------|------------|
+|    10 |    50.000  |
+|    20 |    120.000 |
+|    50 |   350.000  |
+|   100 |  800.000   |
+|  1000 | 11000.000  |
+|  5000 | 70000.000  |
+| 10000 | 150000.000 |
+
+Results Match hypothesis
 
 - [ ] 5. (4 points) Now that you have a nice way to empirically generate valuess of $W(n)$, we can look at the relationship between $a$, $b$, and $f(n)$. Suppose that $f(n) = n^c$. What is the asypmptotic behavior of $W(n)$ if $c < \log_b a$? What about $c > \log_b a$? And if they are equal? Modify `compare_work` to compare empirical values for different work functions (at several different values of $n$) to justify your answer. 
 
-**TODO: your answer goes here**
+When c < log_b a, W(n) grows slower than f(n) (root dominated)
+When c > log_b a, W(n) grows faster than f(n) (leaf dominated)
+When c = log_b a, W(n) grows at the same rate as f(n) (balanced)
+
+|     n |   W_1 |        W_2 |
+|-------|-------|------------|
+|    10 |    31 |     50.000 |
+|    20 |    63 |    120.000 |
+|    50 |   127 |    350.000 |
+|   100 |   255 |    800.000 |
+|  1000 |  2047 |  11000.000 |
+|  5000 | 16383 |  70000.000 |
+| 10000 | 32767 | 150000.000 |
+
+
 
 - [ ] 6. (3 points) $W(n)$ is meant to represent the running time of some recursive algorithm. Suppose we always had $a$ processors available to us and we wanted to compute the span of the same algorithm. Implement the function `span_calc` to compute the empirical span, where the work of the algorithm is given by $W(n)$. Implement `test_compare_span` to create a new comparison function for comparing span functions. Derive the asymptotic expressions for the span of the recurrences you used in problem 4 above. Confirm that everything matches up as it should. 
 
-**TODO: your answer goes here**
+
+When f(n) = 1, lim(n) —> infinity (1 / S(n)). Therefore, f = O(log n).
+When f(n)= n, lim (n) —> infinity (n / S(n)).  Therefore, f = O(n log n).
+When f(n)= log n, lim(n) —> infinity (log n / S(n)). Therefore, f = O(log^2 n).
+
+After implementing test_compare_span and running the pytest cases, everything appears to be working as intended.
